@@ -1,0 +1,20 @@
+module: minimum_test
+inputs:
+  - data_in
+outputs:
+  - data_out
+
+nodes:
+  - id: node_a
+    path: node_a.py
+    inputs:
+      data_in: module/data_in
+    outputs:
+      - intermediate
+
+  - id: node_b
+    path: node_b.py
+    inputs:
+      intermediate: node_a/intermediate
+    outputs:
+      - data_out

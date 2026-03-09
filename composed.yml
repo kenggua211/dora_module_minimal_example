@@ -1,0 +1,23 @@
+nodes:
+- id: source
+  path: source_node.py
+  inputs:
+    tick: dora/timer/millis/1000
+  outputs:
+  - number
+- id: sink
+  path: sink_node.py
+  inputs:
+    result: test_module__node_b/data_out
+- id: test_module__node_a
+  path: node_a.py
+  inputs:
+    data_in: source/number
+  outputs:
+  - intermediate
+- id: test_module__node_b
+  path: node_b.py
+  inputs:
+    intermediate: test_module__node_a/intermediate
+  outputs:
+  - data_out

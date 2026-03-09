@@ -1,0 +1,20 @@
+nodes:
+  - id: source
+    path: source_node.py
+    inputs:
+      tick: dora/timer/millis/1000
+    outputs:
+      - number
+
+  - id: sink
+    path: sink_node.py
+    inputs:
+      result: test_module__node_b/data_out
+
+modules:
+  - id: test_module
+    source: minimum_test.module.yml
+    inputs:
+      data_in: source/number
+    outputs:
+      - data_out
